@@ -17,6 +17,8 @@ public class Player2 : MonoBehaviour
     public int vida = 100;
     public int vidas = 3;
     public bool comVida = true;
+    public GameObject arrow;
+    public GameObject mira;
     
     
     // Start is called before the first frame update
@@ -105,7 +107,20 @@ public class Player2 : MonoBehaviour
             anim.SetLayerWeight(6,1);
             LevaDano(10);
             hitPlayer = false;
-        }   
+        }  
+
+        //Atirar 
+         if(Input.GetMouseButton(0))
+        {
+          
+            anim.SetLayerWeight(4,1);
+            Instantiate(arrow, mira.transform.position, Quaternion.Euler(0, 180, 0));
+        }
+        else
+        {
+             anim.SetLayerWeight(4,0);
+        }
+        
         
     }
 

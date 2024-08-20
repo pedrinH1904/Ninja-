@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player2 : MonoBehaviour
@@ -17,8 +18,6 @@ public class Player2 : MonoBehaviour
     public int vida = 100;
     public int vidas = 3;
     public bool comVida = true;
-    public GameObject arrow;
-    public GameObject mira;
     
     
     // Start is called before the first frame update
@@ -45,14 +44,12 @@ public class Player2 : MonoBehaviour
         {
             sprite.flipX = false;
             anim.SetLayerWeight(1,1);
-            anim.SetLayerWeight(6,0);
         }
         
         if(Input.GetKey(KeyCode.A) && moveH < 0)
         {
             sprite.flipX = true;
             anim.SetLayerWeight(1,1);
-            anim.SetLayerWeight(6,0);
         }
         
         if(moveH == 0)
@@ -79,6 +76,7 @@ public class Player2 : MonoBehaviour
         {
             rb.AddForce(transform.up * forcaPulo,ForceMode2D.Impulse);
             animDoubleJump = true;
+            isJumping = false;
             //anim.SetLayerWeight(2,0);
         }
 
@@ -104,23 +102,9 @@ public class Player2 : MonoBehaviour
 
         if(hitPlayer)
         {
-            anim.SetLayerWeight(6,1);
             LevaDano(10);
             hitPlayer = false;
-        }  
-
-        //Atirar 
-         if(Input.GetMouseButton(0))
-        {
-          
-            anim.SetLayerWeight(4,1);
-            Instantiate(arrow, mira.transform.position, Quaternion.Euler(0, 180, 0));
-        }
-        else
-        {
-             anim.SetLayerWeight(4,0);
-        }
-        
+        }   
         
     }
 
@@ -135,9 +119,25 @@ public class Player2 : MonoBehaviour
             anim.SetLayerWeight(4,0);
             anim.SetLayerWeight(1,0);
             anim.SetLayerWeight(3,0);
-            anim.SetLayerWeight(5,0);
-            anim.SetLayerWeight(6,0);
         }
+
+         if(other.gameObject.CompareTag("inimigo"))
+         {
+            Debug.Log ("Dano");
+            vida -= 10;
+            sprite.color = Color.red;
+         }
+
+    }
+
+    private void OnCollisionExit2D(Collision2D other) 
+    {
+        
+         if(other.gameObject.CompareTag("inimigo"))
+         {
+        
+            sprite.color = Color.white;
+         }
 
     }
 

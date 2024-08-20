@@ -6,6 +6,7 @@ TagManager:
   tags:
   - "Ch\xE3o"
   - tiro
+  - inimigo
   layers:
   - Default
   - TransparentFX

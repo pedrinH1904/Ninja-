@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Cyberpunk street/Scenes/Jogo.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Cyberpunk street/Scenes/Menu.unity
+    guid: bcbf45d41851b9743bea3e7fe29f00cb
   m_configObjects: {}
